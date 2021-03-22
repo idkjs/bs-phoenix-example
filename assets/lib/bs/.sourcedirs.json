@@ -1,0 +1,1 @@
+{ "dirs" : [ "src" ] , "pkgs" : [ [ "bs-phoenix" , "/Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-phoenix" ] , [ "bs-webapi" , "/Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-webapi" ] , [ "bs-fetch" , "/Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-fetch" ] ] , "generated" : [] }

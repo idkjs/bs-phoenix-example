@@ -1,0 +1,20 @@
+rescript = 1
+g_finger := /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-webapi/lib/ocaml/install.stamp
+g_finger := /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-phoenix/lib/ocaml/install.stamp
+g_finger := /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-fetch/lib/ocaml/install.stamp
+rule astj
+  command = /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-platform/darwin/bsc.exe  -warn-error +101 -bs-v 9.0.2 -bs-super-errors -absname -bs-ast -o $out $i
+o src/App.ast : astj ../../src/App.re
+rule deps
+  command = /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-platform/darwin/bsb_helper.exe -hash 3222f42abd73215b0bf5b80a2900245f -bs-ns Example $in
+  restat = 1
+o src/App.d : deps src/App.ast
+rule mij
+  command = /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-platform/darwin/bsc.exe -bs-ns Example -I . -I src -I /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-webapi/lib/ocaml -I /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-phoenix/lib/ocaml -I /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-fetch/lib/ocaml -bs-super-errors  -warn-error +101 -bs-package-name example -bs-package-output es6:$in_d:.bs.js -bs-v $g_finger $i
+  dyndep = 1
+  restat = 1
+o src/App-Example.cmj src/App-Example.cmi ../../src/App.bs.js : mij src/App.ast
+rule build_package
+  command = /Volumes/SSD/Github/bs-phoenix-update/example/assets/node_modules/bs-platform/darwin/bsc.exe -w -49 -color always -no-alias-deps  $i
+  restat = 1
+o Example.cmi : build_package Example.mlmap
